@@ -2,18 +2,32 @@ package br.edu.infnet.appAT.model.negocio;
 
 import java.util.Date;
 
-public abstract class Tarefa
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "TTarefa")
+@Inheritance(strategy = InheritanceType.JOINED)
+public class Tarefa
 {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String titulo;
-	private Date inicioTarefa;
-	private Date terminoTarefa;
-	private Boolean isFinished;
-	private Double pctTarefasConcluidas;
-	private Integer qtdTarefasAtrasadas;
-	private Integer qtdTarefasDescartadas;
-	private String descTarefa;
-	private String lembrete;
+	private String autor;
+	private Date inicio;
+	private Date termino;
+	//private String descricao;
+	@ManyToOne
+	@JoinColumn(name = "idUsuario")
+	private Usuario usuario;
 	
 	public Integer getId() 
 	{
@@ -35,91 +49,60 @@ public abstract class Tarefa
 		this.titulo = titulo;
 	}
 	
-	public Date getInicioTarefa() 
+	public Date getInicio() 
 	{
-		return inicioTarefa;
+		return inicio;
 	}
 	
-	public void setInicioTarefa(Date inicioTarefa) 
+	public void setInicio(Date inicio) 
 	{
-		this.inicioTarefa = inicioTarefa;
+		this.inicio = inicio;
 	}
 	
-	public Date getTerminoTarefa() 
+	public Date getTermino() 
 	{
-		return terminoTarefa;
+		return termino;
 	}
 	
-	public void setTerminoTarefa(Date terminoTarefa) 
+	public void setTermino(Date termino) 
 	{
-		this.terminoTarefa = terminoTarefa;
+		this.termino = termino;
+	}
+
+	/*public String getDescricao() 
+	{
+		return descricao;
 	}
 	
-	public Boolean getIsFinished() 
+	public void setDescricao(String descricao) 
 	{
-		return isFinished;
+		this.descricao = descricao;
+	}*/
+
+	public String getAutor() 
+	{
+		return autor;
+	}
+
+	public void setAutor(String autor) 
+	{
+		this.autor = autor;
 	}
 	
-	public void setIsFinished(Boolean isFinished) 
+	public Usuario getUsuario() 
 	{
-		this.isFinished = isFinished;
+		return usuario;
 	}
-	
-	public Double getPctTarefasConcluidas() 
+
+	public void setUsuario(Usuario usuario) 
 	{
-		return pctTarefasConcluidas;
-	}
-	
-	public void setPctTarefasConcluidas(Double pctTarefasConcluidas) 
-	{
-		this.pctTarefasConcluidas = pctTarefasConcluidas;
-	}
-	
-	public Integer getQtdTarefasAtrasadas() 
-	{
-		return qtdTarefasAtrasadas;
-	}
-	
-	public void setQtdTarefasAtrasadas(Integer qtdTarefasAtrasadas) 
-	{
-		this.qtdTarefasAtrasadas = qtdTarefasAtrasadas;
-	}
-	
-	public Integer getQtdTarefasDescartadas() 
-	{
-		return qtdTarefasDescartadas;
-	}
-	
-	public void setQtdTarefasDescartadas(Integer qtdTarefasDescartadas) 
-	{
-		this.qtdTarefasDescartadas = qtdTarefasDescartadas;
-	}
-	
-	public String getDescTarefa() 
-	{
-		return descTarefa;
-	}
-	
-	public void setDescTarefa(String descTarefa) 
-	{
-		this.descTarefa = descTarefa;
-	}
-	
-	public String getLembrete() {
-		return lembrete;
-	}
-	
-	public void setLembrete(String lembrete) 
-	{
-		this.lembrete = lembrete;
+		this.usuario = usuario;
 	}
 
 	@Override
 	public String toString() 
 	{
-		return "Tarefa [id=" + id + ", titulo=" + titulo + ", inicioTarefa=" + inicioTarefa + ", terminoTarefa="
-				+ terminoTarefa + ", isFinished=" + isFinished + ", pctTarefasConcluidas=" + pctTarefasConcluidas
-				+ ", qtdTarefasAtrasadas=" + qtdTarefasAtrasadas + ", qtdTarefasDescartadas=" + qtdTarefasDescartadas
-				+ ", descTarefa=" + descTarefa + ", lembrete=" + lembrete + "]";
+		return "Tarefa [id=" + id + ", titulo=" + titulo + ", inicioTarefa=" + inicio + ", terminoTarefa="
+				+ termino + ", autor=" + autor +"]";
 	}
 }

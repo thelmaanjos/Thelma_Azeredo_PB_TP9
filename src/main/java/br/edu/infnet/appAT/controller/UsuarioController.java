@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import br.edu.infnet.appAT.model.negocio.Usuario;
@@ -17,11 +18,10 @@ import br.edu.infnet.appAT.model.service.UsuarioService;
 
 @SessionAttributes("user")
 @Controller
-public class UsuarioController 
-{
+public class UsuarioController {
 	@Autowired
 	private UsuarioService usuarioService;
-	
+
 	@RequestMapping("/cadastro")
 	public String cadastro(Model model) 
 	{
@@ -36,51 +36,50 @@ public class UsuarioController
 		usuarioService.incluir(usuario);
 		return "login";
 	}
-	
+
 	@GetMapping(value = "/login")
 	public String logar() 
 	{
 		return "login";
 	}
-	
+
 	@GetMapping(value = "/usuario")
-	public String telaCadastro()
+	public String telaCadastro() 
 	{
-		return "redirect:/usuario/lista";
+		return "usuario/cadastro";
 	}
-	
+
 	@PostMapping(value = "/usuario/incluir")
-	public String incluir(Usuario usuario)
+	public String incluir(Usuario usuario) 
 	{
 		usuarioService.incluir(usuario);
 		return "redirect:/usuario/lista";
 	}
-	
+
 	@GetMapping(value = "/usuario/{id}/excluir")
 	public String excluir(@PathVariable Integer id) 
 	{
 		usuarioService.excluir(id);
 		return "redirect:/usuario/lista";
 	}
-	
+
 	@GetMapping(value = "/usuario/lista")
-	public String obterLista(Model model)
+	public String obterLista(Model model, @SessionAttribute("user") Usuario usuario) 
 	{
-		model.addAttribute("usuarios", usuarioService.obterLista());
-		return "usuario/cadastro";	
+		model.addAttribute("usuariosCadastrados", usuarioService.obterLista(usuario));
+		return "usuario/lista";
 	}
-	
+
 	@PostMapping(value = "/usuario/login")
-	public String validarLogin(Model model, @RequestParam String email, String senha)
+	public String validarLogin(Model model, @RequestParam String email, String senha) 
 	{
 		Usuario usuario = usuarioService.autenticacao(email, senha);
-		
-		if(usuario != null)
+		if (usuario != null) 
 		{
 			model.addAttribute("user", usuario);
 			return "redirect:/home";
 		}
-		
-		return "redirect:/login";
+		model.addAttribute("mensagem", "Login ou senha incorretos.");
+		return logar();
 	}
 }

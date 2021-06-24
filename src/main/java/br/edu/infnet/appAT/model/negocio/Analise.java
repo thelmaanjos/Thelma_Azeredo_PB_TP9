@@ -1,7 +1,14 @@
 package br.edu.infnet.appAT.model.negocio;
 
-import java.util.Date;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "TAnalise")
+@PrimaryKeyJoinColumn(name = "idTarefa")
 public class Analise extends Tarefa
 {
 	private Integer qtdReqFunc;
@@ -10,13 +17,11 @@ public class Analise extends Tarefa
 	private Boolean isVerificated;
 	private String descRecFunc;
 	private String descRecNaoFunc;
-	private Date dataReuniao;
-	private String detalhamento;
-	private Integer qtdSistemas;
 	private Double orcamento;
-	private Double custos;
-	private Double despesas;
-	
+	@ManyToOne
+	@JoinColumn(name = "idUsuario")
+	private Usuario usuario;
+
 	public Integer getQtdReqFunc() 
 	{
 		return qtdReqFunc;
@@ -76,37 +81,7 @@ public class Analise extends Tarefa
 	{
 		this.descRecNaoFunc = descRecNaoFunc;
 	}
-	
-	public Date getDataReuniao() 
-	{
-		return dataReuniao;
-	}
-	
-	public void setDataReuniao(Date dataReuniao) 
-	{
-		this.dataReuniao = dataReuniao;
-	}
-	
-	public String getDetalhamento() 
-	{
-		return detalhamento;
-	}
-	
-	public void setDetalhamento(String detalhamento) 
-	{
-		this.detalhamento = detalhamento;
-	}
-	
-	public Integer getQtdSistemas() 
-	{
-		return qtdSistemas;
-	}
-	
-	public void setQtdSistemas(Integer qtdSistemas) 
-	{
-		this.qtdSistemas = qtdSistemas;
-	}
-	
+
 	public Double getOrcamento() 
 	{
 		return orcamento;
@@ -117,32 +92,19 @@ public class Analise extends Tarefa
 		this.orcamento = orcamento;
 	}
 	
-	public Double getCustos() 
-	{
-		return custos;
+	public Usuario getUsuario() {
+		return usuario;
 	}
-	
-	public void setCustos(Double custos) 
-	{
-		this.custos = custos;
-	}
-	
-	public Double getDespesas() 
-	{
-		return despesas;
-	}
-	
-	public void setDespesas(Double despesas) 
-	{
-		this.despesas = despesas;
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 	@Override
 	public String toString() 
 	{
-		return super.toString() + "Analise [qtdReqFunc=" + qtdReqFunc + ", qtdReqNaoFunc=" + qtdReqNaoFunc + ", isValidated=" + isValidated
-				+ ", isVerificated=" + isVerificated + ", recFunc=" + descRecFunc + ", recNaoFunc=" + descRecNaoFunc
-				+ ", dataReuniao=" + dataReuniao + ", detalhamento=" + detalhamento + ", qtdSistemas=" + qtdSistemas
-				+ ", orcamento=" + orcamento + ", custos=" + custos + ", despesas=" + despesas + "]";
+		return super.toString() + "Analise [qtdReqFunc=" + qtdReqFunc + ", qtdReqNaoFunc=" + qtdReqNaoFunc 
+				+ ", isValidated=" + isValidated + ", isVerificated=" + isVerificated + ", recFunc=" 
+				+ descRecFunc + ", recNaoFunc=" + descRecNaoFunc + ", orcamento=" + orcamento +" ]";
 	}
 }

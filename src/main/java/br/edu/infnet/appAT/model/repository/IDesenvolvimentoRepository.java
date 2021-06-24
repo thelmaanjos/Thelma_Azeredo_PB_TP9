@@ -5,12 +5,11 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
-import br.edu.infnet.appAT.model.negocio.Projeto;
+import br.edu.infnet.appAT.model.negocio.Desenvolvimento;
 
 @Repository
-public interface IProjetoRepository extends CrudRepository<Projeto, Integer> 
+public interface IDesenvolvimentoRepository extends CrudRepository<Desenvolvimento, Integer> 
 {
-	@Query("from Projeto p where p.usuario.id =:userid")
-	public List<Projeto> obterLista(Integer userid, Sort sort);
-
+	@Query("from Desenvolvimento d where d.usuario.id =:userid")
+	public List<Desenvolvimento> obterLista(Integer userid, Sort sort);
 }

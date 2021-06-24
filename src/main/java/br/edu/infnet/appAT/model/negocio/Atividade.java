@@ -1,11 +1,14 @@
 package br.edu.infnet.appAT.model.negocio;
 
-import java.util.Date;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -17,22 +20,18 @@ public class Atividade
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String nome;
-	@Transient
+	@OneToOne(cascade = CascadeType.DETACH)
+	@JoinColumn(name = "idProjeto")
 	private Projeto projeto;
 	@Transient
 	private List<Tarefa> tarefa;
 	private String autor;
 	private String descAtv;
-	private Date dataCriacaoTarefa;
-	private Date dataCriacaoProj;
-	private Date dataAlterTarefa;
-	private String etiqueta;
 	private Integer prioridade;
 	private Boolean isUrgent;
-	private Boolean hasFilter;
-	private Integer qtdTotalProj;
-	private Integer qtdTotalTarefa;
-	private Double filtro;
+	@ManyToOne
+	@JoinColumn(name = "idUsuario")
+	private Usuario usuario;
 	
 	public Projeto getProjeto() 
 	{
@@ -84,46 +83,6 @@ public class Atividade
 		this.descAtv = descAtv;
 	}
 
-	public Date getDataCriacaoTarefa() 
-	{
-		return dataCriacaoTarefa;
-	}
-
-	public void setDataCriacaoTarefa(Date dataCriacaoTarefa) 
-	{
-		this.dataCriacaoTarefa = dataCriacaoTarefa;
-	}
-
-	public Date getDataCriacaoProj() 
-	{
-		return dataCriacaoProj;
-	}
-
-	public void setDataCriacaoProj(Date dataCriacaoProj) 
-	{
-		this.dataCriacaoProj = dataCriacaoProj;
-	}
-
-	public Date getDataAlterTarefa() 
-	{
-		return dataAlterTarefa;
-	}
-
-	public void setDataAlterTarefa(Date dataAlterTarefa) 
-	{
-		this.dataAlterTarefa = dataAlterTarefa;
-	}
-
-	public String getEtiqueta() 
-	{
-		return etiqueta;
-	}
-
-	public void setEtiqueta(String etiqueta) 
-	{
-		this.etiqueta = etiqueta;
-	}
-
 	public Integer getPrioridade() 
 	{
 		return prioridade;
@@ -144,46 +103,6 @@ public class Atividade
 		this.isUrgent = isUrgent;
 	}
 
-	public Boolean getHasFilter()
-	{
-		return hasFilter;
-	}
-
-	public void setHasFilter(Boolean hasFilter) 
-	{
-		this.hasFilter = hasFilter;
-	}
-
-	public Integer getQtdTotalProj() 
-	{
-		return qtdTotalProj;
-	}
-
-	public void setQtdTotalProj(Integer qtdTotalProj) 
-	{
-		this.qtdTotalProj = qtdTotalProj;
-	}
-
-	public Integer getQtdTotalTarefa() 
-	{
-		return qtdTotalTarefa;
-	}
-
-	public void setQtdTotalTarefa(Integer qtdTotalTarefa) 
-	{
-		this.qtdTotalTarefa = qtdTotalTarefa;
-	}
-
-	public Double getFiltro() 
-	{
-		return filtro;
-	}
-
-	public void setFiltro(Double filtro) 
-	{
-		this.filtro = filtro;
-	}
-
 	public String getNome() 
 	{
 		return nome;
@@ -194,13 +113,20 @@ public class Atividade
 		this.nome = nome;
 	}
 
+	public Usuario getUsuario() 
+	{
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) 
+	{
+		this.usuario = usuario;
+	}
+
 	@Override
 	public String toString() 
 	{
 		return "Atividade [id=" + id + ", projeto=" + projeto + ", tarefa=" + tarefa + ", autor=" + autor + ", descAtv="
-				+ descAtv + ", dataCriacaoTarefa=" + dataCriacaoTarefa + ", dataCriacaoProj=" + dataCriacaoProj
-				+ ", dataAlterTarefa=" + dataAlterTarefa + ", etiqueta=" + etiqueta + ", prioridade=" + prioridade
-				+ ", isUrgent=" + isUrgent + ", hasFilter=" + hasFilter + ", qtdTotalProj=" + qtdTotalProj
-				+ ", qtdTotalTarefa=" + qtdTotalTarefa + ", filtro=" + filtro + "]";
+				+ descAtv + ", prioridade=" + prioridade + ", isUrgent=" + isUrgent + "]";
 	}
 }

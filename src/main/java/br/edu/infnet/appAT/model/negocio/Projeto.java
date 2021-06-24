@@ -1,11 +1,12 @@
 package br.edu.infnet.appAT.model.negocio;
 
 import java.util.Date;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -15,13 +16,14 @@ public class Projeto
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	private Integer qtdTarefas;
 	private String autor;
 	private String nomeProj;
 	private String descProj;
 	private Date dataCriacao;
 	private Boolean hasCollab;
-	private Double pctCapacidadeTarefas;
+	@ManyToOne
+	@JoinColumn(name = "idUsuario")
+	private Usuario usuario;
 	
 	public Integer getId() 
 	{
@@ -32,17 +34,7 @@ public class Projeto
 	{
 		this.id = id;
 	}
-	
-	public Integer getQtdTarefas() 
-	{
-		return qtdTarefas;
-	}
-	
-	public void setQtdTarefas(Integer qtdTarefas) 
-	{
-		this.qtdTarefas = qtdTarefas;
-	}
-	
+
 	public String getNomeProj() 
 	{
 		return nomeProj;
@@ -82,30 +74,31 @@ public class Projeto
 	{
 		this.hasCollab = hasTasks;
 	}
-	
-	public Double getPctCapacidadeTarefas() 
-	{
-		return pctCapacidadeTarefas;
-	}
-	
-	public void setPctCapacidadeTarefas(Double pctCapacidadeTarefas) 
-	{
-		this.pctCapacidadeTarefas = pctCapacidadeTarefas;
-	}
 
-	public String getAutor() {
+	public String getAutor() 
+	{
 		return autor;
 	}
 
-	public void setAutor(String autor) {
+	public void setAutor(String autor) 
+	{
 		this.autor = autor;
+	}
+
+	public Usuario getUsuario() 
+	{
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) 
+	{
+		this.usuario = usuario;
 	}
 
 	@Override
 	public String toString() 
 	{
-		return "Projeto [id=" + id + ", qtdTarefas=" + qtdTarefas + ", nomeProj=" + nomeProj + ", descProj=" + descProj
-				+ ", dataCriacao=" + dataCriacao + ", hasTasks=" + hasCollab + ", pctCapacidadeTarefas="
-				+ pctCapacidadeTarefas + "]";
+		return "Projeto [id=" + id + ", nomeProj=" + nomeProj + ", descProj=" + descProj
+				+ ", dataCriacao=" + dataCriacao + ", hasTasks=" + hasCollab + "]";
 	}
 }

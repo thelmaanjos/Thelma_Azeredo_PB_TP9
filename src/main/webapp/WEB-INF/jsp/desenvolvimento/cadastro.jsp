@@ -1,7 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -42,122 +42,133 @@
 }
 </style>
 <!-- Custom styles for this template -->
-<link href="form-validation.css" rel="stylesheet">
-</head>
 
+<link href="../css/sidebar.css" rel="stylesheet">
+</head>
 <body class="bg-light">
-	<div class="container">
-		<main>
-			<div class="py-5 text-center">
-				<h2>Tarefa - Desenvolvimento</h2>
-			</div>
-			<div class="col-md-7 col-lg-8 mx-auto">
-				<form class="needs-validation" novalidate action="/desenvolvimento/incluir"
-					method="post">
-					<div class="row g-3">
-						<div class="col-sm-6">
-							<label class="form-label">Nome da tarefa em desenvolvimento</label> <input
-								type="text" class="form-control" name="titulo"
-								value="Projeto de Bloco" required>
-							<div class="invalid-feedback">Insira um nome</div>
-						</div>
-						<div class="col-sm-6">
-							<label class="form-label">Quantidade geral de erros</label> <input
-								type="number" class="form-control" name="qtdErros" value="10"
-								required>
-							<div class="invalid-feedback">Insira a quantidade</div>
-						</div>
-						<div class="col-12">
-							<label for="text" class="form-label">DescriÁ„o
-								computacional </label>
-							<textarea class="form-control" id="message"
-								placeholder="comente!" name="descComputacional" rows="3">
-	              			</textarea>
-						</div>
-						<div class="col-sm-6">
-							<label class="form-label">Porcentagem dos testes
-								concluÌdos</label> <input type="number" class="form-control"
-								name="pctTestesConcluidos" value="85%" required>
-							<div class="invalid-feedback">Insira a porcentagem</div>
-						</div>
-						<div class="col-sm-6">
-							<label for="text" class="form-label">Data da entrega
-								semanal</label>
-							<!-- Datepicker as text field -->
-							<div class="input-group date " data-date-format="mm/ddd/yyyy">
-								<input type="text" name="entregasSemanais" class="form-control"
-									placeholder="dd/mm/yyyy">
-								<div class="input-group-addon">
-									<span class="glyphicon glyphicon-th"></span>
+	<div class="side">
+		<c:import url="/WEB-INF/jsp/sidemenu.jsp" />
+
+		<div class="container px-4 py-5" id="hanging-icons">
+			<h1 class="pb-2 text-center">Tarefa - Desenvolvimento</h1>
+			<div class="row g-4 py-5 row-cols-1">
+				<div class="col d-flex align-items-start">
+					<form class="needs-validation" novalidate
+						action="/desenvolvimento/incluir" method="post">
+						<div class="row g-3">
+							<div class="col-sm-6">
+								<label class="form-label fw-bold">Nome da tarefa em
+									desenvolvimento</label> <input type="text" class="form-control"
+									name="titulo" value="Assessment Projeto de Bloco" required>
+								<div class="invalid-feedback">Insira um nome</div>
+							</div>
+							<div class="col-sm-6">
+								<label for="username" class="form-label fw-bold">Autor</label>
+								<div class="input-group has-validation">
+									<span class="input-group-text">@</span> <input type="text"
+										class="form-control" name="autor" value="${user.nome}"
+										required>
+									<div class="invalid-feedback">Insira o autor da atividade
+									</div>
 								</div>
 							</div>
-						</div>
-						<div class="col-sm-6">
-							<label for="text" class="mb-3">Usar· framework?</label>
-							<div class="form-check">
-								<input class="form-check-input" type="radio" name="hasFramework"
-									value="true" checked> <label class="form-check-label">Sim</label>
+							<div class="col-sm-6">
+								<label for="text" class="form-label fw-bold">Descri√ß√£o
+									computacional</label>
+								<textarea class="form-control" id="message" name="descComputacional" rows="3"
+								placeholder="comente!">
+	              			</textarea>
 							</div>
-							<div class="form-check">
-								<input class="form-check-input" type="radio" name="hasFramework"
-									value="false"> <label class="form-check-label">N„o</label>
+							<div class="col-sm-6">
+								<label for="text" class="form-label fw-bold">Linguagem
+									de programa√ß√£o</label>
+								<textarea class="form-control" id="message" name="lingProgram" rows="3"
+								placeholder="comente!">
+	              			</textarea>
 							</div>
+							<div class="col-sm-4">
+								<label for="text" class="mb-3 fw-bold">Usar√° framework?</label>
+								<div class="form-check">
+									<input class="form-check-input" type="radio"
+										name="hasFramework" value="true" checked> <label
+										class="form-check-label">Sim</label>
+								</div>
+								<div class="form-check">
+									<input class="form-check-input" type="radio"
+										name="hasFramework" value="false"> <label
+										class="form-check-label">N√£o</label>
+								</div>
+							</div>
+							<div class="col-sm-4">
+								<label for="text" class="mb-3 fw-bold">Usar√° banco de
+									dados?</label>
+								<div class="form-check">
+									<input class="form-check-input" type="radio" name="hassbgd"
+										value="true" checked> <label class="form-check-label">Sim</label>
+								</div>
+								<div class="form-check">
+									<input class="form-check-input" type="radio" name="hassbgd"
+										value="false"> <label class="form-check-label">N√£o</label>
+								</div>
+							</div>
+							<div class="col-sm-4">
+								<label class="form-label fw-bold">Quantidade de testes
+									conclu√≠dos</label> <input type="number" class="form-control"
+									name="qtdTestesConcluidos" value="11" required>
+								<div class="invalid-feedback">Insira a porcentagem</div>
+							</div>
+							<div class="col-sm-4">
+								<label class="form-label fw-bold">Quantidade de erros </label> <input
+									type="number" class="form-control" name="qtdErros" value="1"
+									required>
+								<div class="invalid-feedback">Insira a porcentagem</div>
+							</div>
+
+							<div class="col-sm-4">
+								<label for="text" class="form-label fw-bold">Data de
+									in√≠cio</label>
+								<!-- Datepicker as text field -->
+								<div class="input-group date " data-date-format="mm/ddd/yyyy">
+									<input type="text" name="inicio" class="form-control"
+										placeholder="dd/mm/yyyy">
+									<div class="input-group-addon">
+										<span class="glyphicon glyphicon-th"></span>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-4">
+								<label for="text" class="form-label fw-bold">Data de
+									t√©rmino</label>
+								<!-- Datepicker as text field -->
+								<div class="input-group date " data-date-format="mm/ddd/yyyy">
+									<input type="text" name="termino" class="form-control"
+										placeholder="dd/mm/yyyy">
+									<div class="input-group-addon">
+										<span class="glyphicon glyphicon-th"></span>
+									</div>
+								</div>
+							</div>
+							<hr class="my-4">
 						</div>
-						<hr class="my-4">
-					</div>
-					<div class="d-flex justify-content-center">
-						<button class="w-80 btn btn-dark btn-md my-5" type="submit">Criar
-							tarefa</button>
-					</div>
-				</form>
-				<c:if test="${not empty desenvolvimentos}">
-					<h3>Tarefas em desenvolvimento criadas:</h3>
-					<table class="table table-striped">
-						<thead class="table-dark">
-							<tr>
-								<th scope="col">#</th>
-								<th scope="col">titulo</th>
-								<th scope="col">Qtd geral de erros</th>
-								<th scope="col">DescriÁ„o computacional</th>
-								<th scope="col">% testes concluÌdos</th>
-								<th scope="col">Data da entrega semanal</th>
-								<th scope="col">Framework?</th>
-								<th scope="col">AÁıes</th>
-							</tr>
-						</thead>
-						<tbody>
-							<c:forEach var="d" items="${desenvolvimentos}">
-								<tr>
-									<td>${d.id}</td>
-									<td>${d.titulo}</td>
-									<td>${d.qtdErros}</td>
-									<td>${d.descComputacional}</td>
-									<td>${d.pctTestesConcluidos}</td>
-									<td>${d.entregasSemanais}</td>
-									<td>${d.hasFramework}</td>
-									<td><a href="/desenvolvimento/${d.id}/excluir"
-										class="text-decoration-none">excluir</a></td>
-								</tr>
-							</c:forEach>
-						</tbody>
-					</table>
-				</c:if>
-				<c:if test="${empty desenvolvimentos}">
-					<h3>N„o existem tarefas em desenvolvimento.</h3>
-				</c:if>
+						<div class="d-flex justify-content-center">
+							<button class="w-80 btn btn-dark btn-md my-5" type="submit">Criar
+								tarefa</button>
+						</div>
+					</form>
+				</div>
+				<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+				<script
+					src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+				<!-- Plugin pro Datapicker novo -->
+				<script
+					src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.1/js/bootstrap-datepicker.min.js'></script>
+				<script>
+					$('.input-group.date').datepicker({
+						format : "mm/dd/yyyy"
+					});
+				</script>
 			</div>
-		</main>
-		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-		<script
-			src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-		<!-- Plugin pro Datapicker novo -->
-		<script
-			src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.1/js/bootstrap-datepicker.min.js'></script>
-		<script>
-			$('.input-group.date').datepicker({
-				format : "mm/dd/yyyy"
-			});
-		</script>
+		</div>
 	</div>
 </body>
 </html>

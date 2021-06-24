@@ -1,7 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -11,7 +11,7 @@
 <meta name="author"
 	content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
 <meta name="generator" content="Hugo 0.83.1">
-<title>An·lise</title>
+<title>An√°lise</title>
 <link rel="canonical"
 	href="https://getbootstrap.com/docs/5.0/examples/checkout/">
 <!-- Bootstrap core CSS -->
@@ -42,153 +42,148 @@
 }
 </style>
 <!-- Custom styles for this template -->
-<link href="form-validation.css" rel="stylesheet">
-</head>
 
+<link href="../css/sidebar.css" rel="stylesheet">
+</head>
 <body class="bg-light">
-	<div class="container">
-		<main>
-			<div class="py-5 text-center">
-				<h2>Tarefa - An·lise</h2>
-			</div>
-			<div class="col-md-7 col-lg-8 mx-auto">
-				<form class="needs-validation" novalidate action="/analise/incluir"
-					method="post">
-					<div class="row g-3">
-						<div class="col-sm-6">
-							<label class="form-label">Nome da tarefa em an·lise</label> <input
-								type="text" class="form-control" name="titulo"
-								value="Projeto de Bloco" required>
-							<div class="invalid-feedback">Insira um nome</div>
-						</div>
-						<div class="col-sm-6">
-							<label class="form-label">Quantidade de requisitos
-								funcionais</label> <input type="number" class="form-control"
-								name="qtdReqFunc" value="10" required>
-							<div class="invalid-feedback">Insira a quantidade</div>
-						</div>
-						<div class="col-sm-6">
-							<label class="form-label">Quantidade de requisitos n„o
-								funcionais</label> <input type="number" class="form-control"
-								name="qtdReqFunc" value="5" required>
-							<div class="invalid-feedback">Insira a quantidade</div>
-						</div>
-						<div class="col-12">
-							<label for="text" class="form-label">Descreva seus
-								requisitos funcionais </label>
-							<textarea class="form-control" id="message"
-								placeholder="comente!" name="descRecFunc" rows="3">
-	              			</textarea>
-						</div>
-						<div class="col-12">
-							<label for="text" class="form-label">Descreva seus
-								requisitos n„o funcionais </label>
-							<textarea class="form-control" id="message"
-								placeholder="comente!" name="descRecNaoFunc" rows="3">
-	              			</textarea>
-						</div>
-						<div class="col-sm-6">
-							<label class="form-label">Total do orÁamento</label> <input
-								type="number" class="form-control" name="orcamento"
-								value="R$10.530" required>
-							<div class="invalid-feedback">Insira o valor</div>
-						</div>
-						<div class="col-sm-6">
-							<label for="text" class="form-label">Data da reuni„o</label>
-							<!-- Datepicker as text field -->
-							<div class="input-group date " data-date-format="mm/ddd/yyyy">
-								<input type="text" name="dataReuniao" class="form-control"
-									placeholder="dd/mm/yyyy">
-								<div class="input-group-addon">
-									<span class="glyphicon glyphicon-th"></span>
+	<div class="side">
+		<c:import url="/WEB-INF/jsp/sidemenu.jsp" />
+
+		<div class="container px-4 py-5" id="hanging-icons">
+			<h1 class="pb-2 text-center">Tarefa - an√°lise</h1>
+			<div class="row g-4 py-5 row-cols-1">
+				<div class="col d-flex align-items-start">
+					<form class="needs-validation" novalidate action="/analise/incluir"
+						method="post">
+						<div class="row g-3">
+							<div class="col-sm-6">
+								<label class="form-label fw-bold">Atividade associada:</label> <select
+									class="form-select" name="atividade.id" required>
+									<option selected>Escolha a atividade relacionada</option>
+									<c:forEach var="a" items="${atividades}">
+										<option value="${a.id}">${a.nome}</option>
+									</c:forEach>
+								</select>
+								<div class="invalid-feedback">Selecione um projeto</div>
+							</div>
+							<div class="col-sm-6">
+								<label class="form-label fw-bold">Nome da tarefa em
+									an√°lise</label> <input type="text" class="form-control" name="titulo"
+									value="Retrospectiva de reuni√£o com o cliente" required>
+								<div class="invalid-feedback">Insira um nome</div>
+							</div>
+							<div class="col-sm-6">
+								<label for="username" class="form-label fw-bold">Autor</label>
+								<div class="input-group has-validation">
+									<span class="input-group-text">@</span> <input type="text"
+										class="form-control" name="autor" value="${user.nome}"
+										required>
+									<div class="invalid-feedback">Insira o autor da atividade
+									</div>
 								</div>
 							</div>
+							<div class="col-sm-4">
+								<label class="form-label fw-bold">Quantidade de
+									requisitos funcionais</label> <input type="number" class="form-control"
+									name="qtdReqFunc" value="10" required>
+								<div class="invalid-feedback">Insira a quantidade</div>
+							</div>
+							<div class="col-sm-4">
+								<label class="form-label fw-bold">Quantidade de
+									requisitos n√£o funcionais</label> <input type="number"
+									class="form-control" name="qtdReqNaoFunc" value="4" required>
+								<div class="invalid-feedback">Insira a quantidade</div>
+							</div>
+							<div class="col-sm-4">
+								<label class="form-label fw-bold">Total do or√ßamento</label> <input
+									type="number" class="form-control" name="orcamento"
+									value="15.536" required>
+								<div class="invalid-feedback">Insira o valor</div>
+							</div>
+							<div class="col-sm-6">
+								<label for="text" class="form-label fw-bold">Descreva
+									seus requisitos funcionais </label>
+								<textarea class="form-control" id="message" name="descRecFunc"
+									rows="3"
+									placeholder="1. O sistema deve oferecer crud completo, 2. O sistema deve permitir que novos clientes se cadasterem"></textarea>
+							</div>
+							<div class="col-sm-6">
+								<label for="text" class="form-label fw-bold">Descreva
+									seus requisitos n√£o funcionais </label>
+								<textarea class="form-control" id="message"
+									name="descRecNaoFunc" rows="3"
+									placeholder="1. I sistema deve procurar o produto em at√© 3 segundos, 2. O sistema deve possuir design responsivo"></textarea>
+							</div>
+							<div class="col-sm-6">
+								<label for="text" class="mb-3 fw-bold">Est√° validado?</label>
+								<div class="form-check">
+									<input class="form-check-input" type="radio" name="isValidated"
+										value="true" checked> <label class="form-check-label">Sim</label>
+								</div>
+								<div class="form-check">
+									<input class="form-check-input" type="radio" name="isValidated"
+										value="false"> <label class="form-check-label">N√£o</label>
+								</div>
+							</div>
+							<div class="col-sm-6">
+								<label for="text" class="mb-3 fw-bold">Est√° verificado?</label>
+								<div class="form-check">
+									<input class="form-check-input" type="radio"
+										name="isVerificated" value="true" checked> <label
+										class="form-check-label">Sim</label>
+								</div>
+								<div class="form-check">
+									<input class="form-check-input" type="radio"
+										name="isVerificated" value="false"> <label
+										class="form-check-label">N√£o</label>
+								</div>
+							</div>
+							<div class="col-sm-6">
+								<label for="text" class="form-label fw-bold">Data de
+									in√≠cio</label>
+								<!-- Datepicker as text field -->
+								<div class="input-group date " data-date-format="mm/ddd/yyyy">
+									<input type="text" name="inicio" class="form-control"
+										placeholder="dd/mm/yyyy">
+									<div class="input-group-addon">
+										<span class="glyphicon glyphicon-th"></span>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-6">
+								<label for="text" class="form-label fw-bold">Data de
+									t√©rmino</label>
+								<!-- Datepicker as text field -->
+								<div class="input-group date " data-date-format="mm/ddd/yyyy">
+									<input type="text" name="termino" class="form-control"
+										placeholder="dd/mm/yyyy">
+									<div class="input-group-addon">
+										<span class="glyphicon glyphicon-th"></span>
+									</div>
+								</div>
+							</div>
+							<hr class="my-4">
 						</div>
-						<div class="col-sm-6">
-							<label for="text" class="mb-3">Est· validado?</label>
-							<div class="form-check">
-								<input class="form-check-input" type="radio" name="isValidated"
-									value="true" checked> <label class="form-check-label">Sim</label>
-							</div>
-							<div class="form-check">
-								<input class="form-check-input" type="radio" name="isValidated"
-									value="false"> <label class="form-check-label">N„o</label>
-							</div>
+						<div class="d-flex justify-content-center">
+							<button class="w-80 btn btn-dark btn-md my-5" type="submit">Criar
+								tarefa</button>
 						</div>
-						<div class="col-sm-6">
-							<label for="text" class="mb-3">Est· verificado?</label>
-							<div class="form-check">
-								<input class="form-check-input" type="radio"
-									name="isVerificated" value="true" checked> <label
-									class="form-check-label">Sim</label>
-							</div>
-							<div class="form-check">
-								<input class="form-check-input" type="radio"
-									name="isVerificated" value="false"> <label
-									class="form-check-label">N„o</label>
-							</div>
-						</div>
-						<hr class="my-4">
-					</div>
-					<div class="d-flex justify-content-center">
-						<button class="w-80 btn btn-dark btn-md my-5" type="submit">Criar
-							tarefa</button>
-					</div>
-				</form>
-				<c:if test="${not empty analises}">
-					<h3>Tarefas em an·lise criadas:</h3>
-					<table class="table table-striped">
-						<thead class="table-dark">
-							<tr>
-								<th scope="col">#</th>
-								<th scope="col">titulo</th>
-								<th scope="col">Qtd requisitos funcionais</th>
-								<th scope="col">Qtd requisitos n„o funcionais</th>
-								<th scope="col">DescriÁ„o req funcionais</th>
-								<th scope="col">DescriÁ„o req n„o funcionais</th>
-								<th scope="col">OrÁamento</th>
-								<th scope="col">Reuni„o</th>
-								<th scope="col">Verificado?</th>
-								<th scope="col">Validado?</th>
-								<th scope="col">AÁıes</th>
-							</tr>
-						</thead>
-						<tbody>
-							<c:forEach var="a" items="${analises}">
-								<tr>
-									<td>${a.id}</td>
-									<td>${a.titulo}</td>
-									<td>${a.qtdReqFunc}</td>
-									<td>${a.qtdReqNaoFunc}</td>
-									<td>${a.descReqFunc}</td>
-									<td>${a.descReqNaoFunc}</td>
-									<td>${a.orcamento}</td>
-									<td>${a.dataReuniao}</td>
-									<td>${a.isValidated}</td>
-									<td>${a.isVerificated}</td>
-									<td><a href="/analise/${a.id}/excluir"
-										class="text-decoration-none">excluir</a></td>
-								</tr>
-							</c:forEach>
-						</tbody>
-					</table>
-				</c:if>
-				<c:if test="${empty analises}">
-					<h3>N„o existem tarefas em an·lise.</h3>
-				</c:if>
+					</form>
+
+				</div>
+				<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+				<script
+					src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+				<!-- Plugin pro Datapicker novo -->
+				<script
+					src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.1/js/bootstrap-datepicker.min.js'></script>
+				<script>
+					$('.input-group.date').datepicker({
+						format : "mm/dd/yyyy"
+					});
+				</script>
 			</div>
-		</main>
-		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-		<script
-			src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-		<!-- Plugin pro Datapicker novo -->
-		<script
-			src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.1/js/bootstrap-datepicker.min.js'></script>
-		<script>
-			$('.input-group.date').datepicker({
-				format : "mm/dd/yyyy"
-			});
-		</script>
+		</div>
 	</div>
 </body>
 </html>

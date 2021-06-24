@@ -1,7 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -11,7 +11,7 @@
 <meta name="author"
 	content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
 <meta name="generator" content="Hugo 0.83.1">
-<title>Implantação</title>
+<title>ImplantaÃ§Ã£o</title>
 <link rel="canonical"
 	href="https://getbootstrap.com/docs/5.0/examples/checkout/">
 <!-- Bootstrap core CSS -->
@@ -42,121 +42,149 @@
 }
 </style>
 <!-- Custom styles for this template -->
-<link href="form-validation.css" rel="stylesheet">
-</head>
 
+<link href="../css/sidebar.css" rel="stylesheet">
+</head>
 <body class="bg-light">
-	<div class="container">
-		<main>
-			<div class="py-5 text-center">
-				<h2>Tarefa - Implantação</h2>
-			</div>
-			<div class="col-md-7 col-lg-8 mx-auto">
-				<form class="needs-validation" novalidate
-					action="/implantacao/incluir" method="post">
-					<div class="row g-3">
-						<div class="col-sm-6">
-							<label class="form-label">Nome da tarefa em implantação</label> <input
-								type="text" class="form-control" name="titulo"
-								value="Projeto de Bloco" required>
-							<div class="invalid-feedback">Insira um nome</div>
-						</div>
-						<div class="col-sm-6">
-							<label class="form-label">Quantidade de funcionários a
-								serem treinados</label> <input type="number" class="form-control"
-								name="qtdFuncTreinados" value="18" required>
-							<div class="invalid-feedback">Insira a quantidade</div>
-						</div>
-						<div class="col-12">
-							<label for="text" class="form-label">Considerações finais</label>
-							<textarea class="form-control" id="message"
-								placeholder="comente!" name="consideracoes" rows="3">
-	              			</textarea>
-						</div>
-						<div class="col-sm-6">
-							<label class="form-label">Valor dos custos extras durante
-								o projeto concluídos</label> <input type="number" class="form-control"
-								name="custosExtras" value="R$3.000" required>
-							<div class="invalid-feedback">Insira a porcentagem</div>
-						</div>
-						<div class="col-sm-6">
-							<label for="text" class="form-label">Data da entrega
-								final</label>
-							<!-- Datepicker as text field -->
-							<div class="input-group date " data-date-format="mm/ddd/yyyy">
-								<input type="text" name="dataEntrega" class="form-control"
-									placeholder="dd/mm/yyyy">
-								<div class="input-group-addon">
-									<span class="glyphicon glyphicon-th"></span>
+	<div class="side">
+		<c:import url="/WEB-INF/jsp/sidemenu.jsp" />
+
+		<div class="container px-4 py-5" id="hanging-icons">
+			<h1 class="pb-2 text-center">Tarefa - ImplantaÃ§Ã£o</h1>
+			<div class="row g-4 py-5 row-cols-1">
+				<div class="col d-flex align-items-start">
+					<form class="needs-validation" novalidate
+						action="/implantacao/incluir" method="post">
+						<div class="row g-3">
+							<div class="col-sm-6">
+								<label class="form-label fw-bold">Nome da tarefa em
+									implantaÃ§Ã£o</label> <input type="text" class="form-control"
+									name="titulo" value="Entrega de Assessment"
+									required>
+								<div class="invalid-feedback">Insira um nome</div>
+							</div>
+							<div class="col-sm-6">
+								<label for="username" class="form-label fw-bold">Autor</label>
+								<div class="input-group has-validation">
+									<span class="input-group-text">@</span> <input type="text"
+										class="form-control" name="autor" value="${user.nome}"
+										required>
+									<div class="invalid-feedback">Insira o autor da atividade
+									</div>
 								</div>
 							</div>
-						</div>
-						<div class="col-sm-6">
-							<label for="text" class="mb-3">Já está instalado?</label>
-							<div class="form-check">
-								<input class="form-check-input" type="radio" name="isInstalled"
-									value="true" checked> <label class="form-check-label">Sim</label>
+							<div class="col-sm-6">
+								<label for="text" class="mb-3 fw-bold">O programa estÃ¡
+									funcionando?</label>
+								<div class="form-check">
+									<input class="form-check-input" type="radio"
+										name="isSystemWorking" value="true" checked> <label
+										class="form-check-label">Sim</label>
+								</div>
+								<div class="form-check">
+									<input class="form-check-input" type="radio"
+										name="isSystemWorking" value="false"> <label
+										class="form-check-label">NÃ£o</label>
+								</div>
 							</div>
-							<div class="form-check">
-								<input class="form-check-input" type="radio" name="isInstalled"
-									value="false"> <label class="form-check-label">Não</label>
+							<div class="col-sm-6">
+								<label for="text" class="mb-3 fw-bold">O programa estÃ¡
+									instalado?</label>
+								<div class="form-check">
+									<input class="form-check-input" type="radio" name="isInstalled"
+										value="true" checked> <label class="form-check-label">Sim</label>
+								</div>
+								<div class="form-check">
+									<input class="form-check-input" type="radio" name="isInstalled"
+										value="false"> <label class="form-check-label">NÃ£o</label>
+								</div>
 							</div>
+							<div class="col-sm-6">
+								<label for="text" class="mb-3 fw-bold">Os funcionÃ¡rios
+									foram treinados?</label>
+								<div class="form-check">
+									<input class="form-check-input" type="radio"
+										name="isFuncTrained" value="true" checked> <label
+										class="form-check-label">Sim</label>
+								</div>
+								<div class="form-check">
+									<input class="form-check-input" type="radio"
+										name="isFuncTrained" value="false"> <label
+										class="form-check-label">NÃ£o</label>
+								</div>
+							</div>
+							<div class="col-sm-6">
+								<label class="form-label fw-bold">Quantidade de
+									funcionÃ¡rios treinados</label> <input type="number"
+									class="form-control" name="qtdFuncTreinados" value="15"
+									required>
+								<div class="invalid-feedback">Insira a quantidade</div>
+							</div>
+							<div class="col-sm-6">
+								<label for="text" class="form-label fw-bold">ConsideraÃ§Ãµes
+									finais </label>
+								<textarea class="form-control" id="message" name="consideracoes"
+									rows="3"
+									placeholder="Vamos tirar 10!"></textarea>
+							</div>
+							<div class="col-sm-6">
+								<label for="text" class="form-label fw-bold">Data de
+									entrega</label>
+								<!-- Datepicker as text field -->
+								<div class="input-group date " data-date-format="mm/ddd/yyyy">
+									<input type="text" name="dataEntrega" class="form-control"
+										placeholder="dd/mm/yyyy">
+									<div class="input-group-addon">
+										<span class="glyphicon glyphicon-th"></span>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-6">
+								<label for="text" class="form-label fw-bold">Data de
+									inÃ­cio</label>
+								<!-- Datepicker as text field -->
+								<div class="input-group date " data-date-format="mm/ddd/yyyy">
+									<input type="text" name="inicio" class="form-control"
+										placeholder="dd/mm/yyyy">
+									<div class="input-group-addon">
+										<span class="glyphicon glyphicon-th"></span>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-6">
+								<label for="text" class="form-label fw-bold">Data de
+									tÃ©rmino</label>
+								<!-- Datepicker as text field -->
+								<div class="input-group date " data-date-format="mm/ddd/yyyy">
+									<input type="text" name="termino" class="form-control"
+										placeholder="dd/mm/yyyy">
+									<div class="input-group-addon">
+										<span class="glyphicon glyphicon-th"></span>
+									</div>
+								</div>
+							</div>
+							<hr class="my-4">
 						</div>
-						<hr class="my-4">
-					</div>
-					<div class="d-flex justify-content-center">
-						<button class="w-80 btn btn-dark btn-md my-5" type="submit">Criar
-							tarefa</button>
-					</div>
-				</form>
-				<c:if test="${not empty implantacoes}">
-					<h3>Tarefas em implantação criadas:</h3>
-					<table class="table table-striped">
-						<thead class="table-dark">
-							<tr>
-								<th scope="col">#</th>
-								<th scope="col">titulo</th>
-								<th scope="col">Qtd de funcionários a serem treinados</th>
-								<th scope="col">Considerações finais</th>
-								<th scope="col">Total dos custos extras</th>
-								<th scope="col">Data da entrega final</th>
-								<th scope="col">Instalado?</th>
-								<th scope="col">Ações</th>
-							</tr>
-						</thead>
-						<tbody>
-							<c:forEach var="i" items="${implantacoes}">
-								<tr>
-									<td>${i.id}</td>
-									<td>${i.titulo}</td>
-									<td>${i.qtdFuncTreinados}</td>
-									<td>${i.consideracoes}</td>
-									<td>${i.custosExtras}</td>
-									<td>${i.dataEntrega}</td>
-									<td>${i.isInstalled}</td>
-									<td><a href="/implantacao/${i.id}/excluir"
-										class="text-decoration-none">excluir</a></td>
-								</tr>
-							</c:forEach>
-						</tbody>
-					</table>
-				</c:if>
-				<c:if test="${empty implantacoes}">
-					<h3>Não existem tarefas em implantação.</h3>
-				</c:if>
+						<div class="d-flex justify-content-center">
+							<button class="w-80 btn btn-dark btn-md my-5" type="submit">Criar
+								tarefa</button>
+						</div>
+					</form>
+
+				</div>
+				<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+				<script
+					src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+				<!-- Plugin pro Datapicker novo -->
+				<script
+					src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.1/js/bootstrap-datepicker.min.js'></script>
+				<script>
+					$('.input-group.date').datepicker({
+						format : "mm/dd/yyyy"
+					});
+				</script>
 			</div>
-		</main>
-		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-		<script
-			src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-		<!-- Plugin pro Datapicker novo -->
-		<script
-			src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.1/js/bootstrap-datepicker.min.js'></script>
-		<script>
-			$('.input-group.date').datepicker({
-				format : "mm/dd/yyyy"
-			});
-		</script>
+		</div>
 	</div>
 </body>
 </html>

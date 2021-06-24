@@ -7,45 +7,47 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
-import br.edu.infnet.appAT.model.negocio.Atividade;
+
+import br.edu.infnet.appAT.model.negocio.Analise;
 import br.edu.infnet.appAT.model.negocio.Usuario;
+import br.edu.infnet.appAT.model.service.AnaliseService;
 import br.edu.infnet.appAT.model.service.AtividadeService;
 import br.edu.infnet.appAT.model.service.ProjetoService;
 
 @Controller
-public class AtividadeController 
+public class AnaliseController 
 {
 	@Autowired
-	private AtividadeService atividadeService;
+	private AnaliseService analiseService;
 	@Autowired
-	private ProjetoService projetoService;
+	private AtividadeService atividadeService;
 	
-	@GetMapping(value = "/atividade")
+	@GetMapping(value = "/analise")
 	public String telaCadastro(Model model, @SessionAttribute("user") Usuario usuario)
 	{
-		model.addAttribute("projetos", projetoService.obterLista(usuario));
-		return "/atividade/cadastro";
+		model.addAttribute("atividades", atividadeService.obterLista(usuario));
+		return "/analise/cadastro";
 	}
 	
-	@PostMapping(value = "/atividade/incluir")
-	public String incluir(Atividade atividade, @SessionAttribute("user") Usuario usuario)
+	@PostMapping(value = "/analise/incluir")
+	public String incluir(Analise analise, @SessionAttribute("user") Usuario usuario)
 	{
-		atividade.setUsuario(usuario);
-		atividadeService.incluir(atividade);
-		return "redirect:/atividade/lista";
+		analise.setUsuario(usuario);
+		analiseService.incluir(analise);
+		return "redirect:/analise/lista";
 	}
 	
-	@GetMapping(value = "/atividade/{id}/excluir")
+	@GetMapping(value = "/analise/{id}/excluir")
 	public String excluir(@PathVariable Integer id) 
 	{
-		atividadeService.excluir(id);
-		return "redirect:/atividade/lista";
+		analiseService.excluir(id);
+		return "redirect:/analise/lista";
 	}
 	
-	@GetMapping(value = "/atividade/lista")
+	@GetMapping(value = "/analise/lista")
 	public String obterLista(Model model, @SessionAttribute("user") Usuario usuario)
 	{
-		model.addAttribute("atividades", atividadeService.obterLista(usuario));
-		return "atividade/lista";
+		model.addAttribute("analises", analiseService.obterLista(usuario));
+		return "analise/lista";
 	}
 }

@@ -1,19 +1,26 @@
 package br.edu.infnet.appAT.model.negocio;
 
 import java.util.Date;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "TImplantacao")
+@PrimaryKeyJoinColumn(name = "idTarefa")
 public class Implantacao extends Tarefa
 {
 	private Boolean isInstalled;
-	private String manual;
-	private Double pctDadosImportados;
 	private Boolean isFuncTrained;
 	private Boolean isSystemWorking;
 	private Integer qtdFuncTreinados;
-	private Date dataTreinamento;
 	private Date dataEntrega;
 	private String consideracoes;
-	private Double custosExtras;
+	@ManyToOne
+	@JoinColumn(name = "idUsuario")
+	private Usuario usuario;
 	
 	public Boolean getIsInstalled() 
 	{
@@ -24,27 +31,7 @@ public class Implantacao extends Tarefa
 	{
 		this.isInstalled = isInstalled;
 	}
-	
-	public String getManual() 
-	{
-		return manual;
-	}
-	
-	public void setManual(String manual) 
-	{
-		this.manual = manual;
-	}
-	
-	public Double getPctDadosImportados() 
-	{
-		return pctDadosImportados;
-	}
-	
-	public void setPctDadosImportados(Double pctDadosImportados) 
-	{
-		this.pctDadosImportados = pctDadosImportados;
-	}
-	
+
 	public Boolean getIsFuncTrained() 
 	{
 		return isFuncTrained;
@@ -75,16 +62,6 @@ public class Implantacao extends Tarefa
 		this.qtdFuncTreinados = qtdFuncTreinados;
 	}
 	
-	public Date getDataTreinamento() 
-	{
-		return dataTreinamento;
-	}
-	
-	public void setDataTreinamento(Date dataTreinamento) 
-	{
-		this.dataTreinamento = dataTreinamento;
-	}
-	
 	public Date getDataEntrega() 
 	{
 		return dataEntrega;
@@ -104,23 +81,21 @@ public class Implantacao extends Tarefa
 	{
 		this.consideracoes = consideracoes;
 	}
-	
-	public Double getCustosExtras() 
-	{
-		return custosExtras;
+
+	public Usuario getUsuario() {
+		return usuario;
 	}
-	
-	public void setCustosExtras(Double custosExtras) 
-	{
-		this.custosExtras = custosExtras;
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 	@Override
 	public String toString() 
 	{
-		return super.toString() + "Implantacao [isInstalled=" + isInstalled + ", manual=" + manual + ", pctDadosImportados="
-				+ pctDadosImportados + ", isFuncTrained=" + isFuncTrained + ", isSystemWorking=" + isSystemWorking
-				+ ", qtdFuncTreinados=" + qtdFuncTreinados + ", dataTreinamento=" + dataTreinamento + ", dataEntrega="
-				+ dataEntrega + ", consideracoes=" + consideracoes + ", custosExtras=" + custosExtras + "]";
+		return super.toString() + "Implantacao [isInstalled=" + isInstalled 
+				+ ", isFuncTrained=" + isFuncTrained + ", isSystemWorking=" 
+				+ isSystemWorking + ", qtdFuncTreinados=" + qtdFuncTreinados + ", dataEntrega="
+				+ dataEntrega + ", consideracoes=" + consideracoes + "]";
 	}
 }

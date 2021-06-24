@@ -1,3 +1,5 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -51,7 +53,7 @@
 		</header>
 		<main class="px-5 m-auto form-signin">
 			<h1>login</h1>
-			<form action="/usuario/login" method="POST">
+			<form action="/usuario/login" method="post">
 				<div class="form-group">
 					<label for="email">E-mail:</label> <input type="email"
 						class="form-control mb-3" id="email"
@@ -64,6 +66,9 @@
 				</div>
 				<button type="submit" class="btn btn-primary" value="entrar">entrar</button>
 			</form>
+			<c:if test="${not empty mensagem}">
+				<div class="alert alert-danger" role="alert">${mensagem}</div>
+			</c:if>
 		</main>
 		<footer class="mt-auto text-white-50">
 			<p>Todoology. © Copyright 2021. Todos os direitos reservados.</p>

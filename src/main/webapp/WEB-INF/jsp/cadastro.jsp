@@ -59,7 +59,7 @@
 				</main>
 			</div>
 			<div class="col-md-6">
-				<form class="form-signin" action="cadastrar" method="POST">
+				<form class="form-signin" action="cadastrar" method="post">
 					<h1 class="h3 mb-3 fw-normal">cadastre-se</h1>
 
 					<div class="form-floating my-3">

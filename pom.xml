@@ -10,9 +10,9 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>br.edu.infnet</groupId>
-	<artifactId>Thelma_Azeredo_PB_TP9</artifactId>
+	<artifactId>Thelma_Azeredo_PB_AT</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Thelma_Azeredo_PB_TP9</name>
+	<name>Thelma_Azeredo_PB_AT</name>
 	<description>Projeto AT da Disciplina Projeto de Bloco</description>
 	<properties>
 		<java.version>11</java.version>
